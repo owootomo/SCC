@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<script>
+  // Presume the form has id="offerForm" and the submit button id="submitBtn"
+  // The success div has id="fSuccess" and the form is within a div with id="formBlock"
+  async function doSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('offerForm');
+    const btn = document.getElementById('submitBtn');
+    const formBlock = document.getElementById('formBlock');
+    const successDiv = document.getElementById('fSuccess');
+
+    // Get field values
+    const data = {
+      fn: form.fn.value,
+      ln: form.ln.value,
+      ph: form.ph.value,
+      addr: form.addr.value,
+      beds: form.beds.value,
+      sit: form.sit.value,
+      msg: form.msg.value
+    };
+
+    btn.disabled = true;
+    const origText = btn.textContent;
+    btn.textContent = "Sending...";
+
+    try {
+      const resp = await fetch("https://formspree.io/f/mzdkeyen", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (resp.ok) {
+        formBlock.style.display = "none";
+        successDiv.style.display = "block";
+      } else {
+        btn.disabled = false;
+        btn.textContent = origText;
+        alert("There was an error. Please try again.");
+      }
+    } catch (error) {
+      btn.disabled = false;
+      btn.textContent = origText;
+      alert("There was a network error. Please try again.");
+    }
+  }
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Southern Charm Capital | Sell Your Georgia Home Directly — No Agents, No Fees</title>
+<meta name="description" content="Want to sell your Georgia home without listing it? Southern Charm Capital buys houses directly from homeowners across Cobb County, Stone Mountain, Powder Springs & all of Georgia. No agent fees, no showings, fair offers.">
+<meta name="keywords" content="sell my house georgia, home buyer georgia, sell my house fast mableton, sell house marietta ga, cobb county home buyer, stone mountain home buyer, powder springs home buyer, skip the MLS georgia, we buy houses georgia">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.southerncharm.capital/">
+<meta property="og:title" content="Sell Your Georgia Home Without an Agent — Southern Charm Capital">
+<meta property="og:description" content="We buy homes directly from Georgia homeowners. No agent fees, no hassle — just a straightforward sale.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"RealEstateAgent","name":"Southern Charm Capital","description":"We buy homes directly from Georgia homeowners — simple, fast, and straightforward.","url":"https://www.southerncharm.capital","areaServed":[{"@type":"State","name":"Georgia"},{"@type":"City","name":"Mableton"},{"@type":"City","name":"Marietta"},{"@type":"City","name":"Stone Mountain"},{"@type":"City","name":"Powder Springs"}]}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--pine:#2F4C42;--pine-deep:#1d3329;--pine-mid:#3d6356;--beige:#E7D8C9;--beige-lt:#f0e8de;--ivory:#F8F5F2;--clay:#9C6B4F;--gold:#B8A06A;--gold-lt:#d4bc88;--dark:#0e1e18;--ink:rgba(14,30,24,.75);--ink-soft:rgba(14,30,24,.45)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--pine-deep);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+#cur{position:fixed;width:9px;height:9px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s}
+#cur-ring{position:fixed;width:34px;height:34px;border:1px solid var(--pine);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .3s cubic-bezier(.25,.46,.45,.94);opacity:.55}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;transition:background .4s,padding .4s,box-shadow .4s}
+nav.up{background:rgba(248,245,242,.96);backdrop-filter:blur(14px);padding:14px 56px;box-shadow:0 1px 0 rgba(47,76,66,.1)}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.logo-icon{width:34px;height:34px;flex-shrink:0}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:14.5px;font-weight:500;color:var(--pine);letter-spacing:.07em}
+.logo-sub{font-size:8.5px;font-weight:400;color:var(--clay);letter-spacing:.28em;margin-top:2px}
+.nav-mid{display:flex;gap:32px;list-style:none}
+.nav-mid a{font-size:10.5px;font-weight:400;letter-spacing:.18em;color:var(--pine);text-decoration:none;text-transform:uppercase;position:relative;padding-bottom:2px}
+.nav-mid a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-mid a:hover::after{width:100%}
+.nav-btn{background:var(--pine);color:var(--ivory);font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:11px 26px;transition:background .3s,transform .2s;border:none;cursor:none;display:inline-block}
+.nav-btn:hover{background:var(--pine-mid);transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:55% 45%;position:relative;overflow:hidden}
+.hero-l{background:var(--pine-deep);display:flex;flex-direction:column;justify-content:center;padding:140px 64px 80px 80px;position:relative;overflow:hidden}
+.hero-l::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(-55deg,rgba(184,160,106,.035) 0,rgba(184,160,106,.035) 1px,transparent 1px,transparent 44px);animation:drift 28s linear infinite}
+.hero-l::after{content:'';position:absolute;right:-60px;bottom:-60px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(184,160,106,.08);animation:breathe 8s ease-in-out infinite}
+@keyframes drift{to{background-position:88px 88px}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.hero-eyebrow{display:flex;align-items:center;gap:11px;font-size:9.5px;font-weight:400;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:26px;position:relative;opacity:0;animation:up .8s ease .15s forwards}
+.hero-eyebrow span{display:block;width:28px;height:1px;background:var(--gold);flex-shrink:0}
+h1.hero-head{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,5.2vw,78px);font-weight:300;line-height:1.06;color:var(--ivory);margin-bottom:30px;opacity:0;animation:up .9s ease .3s forwards}
+h1.hero-head em{font-style:italic;color:var(--gold)}
+h1.hero-head strong{font-weight:400;color:var(--beige)}
+.hero-copy{font-size:14.5px;line-height:1.9;font-weight:300;color:rgba(232,216,201,.72);max-width:390px;margin-bottom:48px;opacity:0;animation:up .9s ease .46s forwards;letter-spacing:.02em}
+.hero-btns{display:flex;align-items:center;gap:22px;opacity:0;animation:up .9s ease .6s forwards}
+.btn-gold{background:var(--gold);color:var(--pine-deep);font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 34px;text-decoration:none;display:inline-block;transition:background .3s,transform .25s,letter-spacing .3s;position:relative;overflow:hidden}
+.btn-gold::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-100%);transition:transform .4s}
+.btn-gold:hover::before{transform:translateX(0)}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);letter-spacing:.27em}
+.btn-ghost-lt{color:var(--beige);font-size:10.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:7px;transition:gap .3s,color .3s}
+.btn-ghost-lt:hover{gap:13px;color:var(--gold)}
+.hero-pill{position:absolute;bottom:80px;right:0;background:var(--gold);padding:18px 24px;min-width:148px;opacity:0;animation:fromR .7s ease 1s forwards}
+.hero-pill .p-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--pine-deep);line-height:1;display:block}
+.hero-pill .p-label{font-size:8.5px;font-weight:500;letter-spacing:.2em;color:rgba(14,30,24,.65);text-transform:uppercase;display:block;margin-top:3px}
+.hero-r{position:relative;overflow:hidden;background:var(--beige)}
+.hero-r-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80') center/cover no-repeat;animation:zoomBreath 18s ease-in-out infinite alternate}
+@keyframes zoomBreath{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-r-overlay{position:absolute;inset:0;background:linear-gradient(150deg,rgba(47,76,66,.35) 0%,transparent 55%),linear-gradient(to top,rgba(14,30,24,.65) 0%,transparent 55%);z-index:1}
+.hero-r-bottom{position:absolute;bottom:48px;left:40px;right:40px;z-index:2;opacity:0;animation:up .9s ease .85s forwards}
+.loc-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(248,245,242,.12);backdrop-filter:blur(8px);border:1px solid rgba(248,245,242,.22);padding:7px 14px;margin-bottom:14px;color:var(--ivory);font-size:9.5px;font-weight:400;letter-spacing:.25em;text-transform:uppercase}
+.loc-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+.hero-r-quote{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--ivory);line-height:1.45}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fromR{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+
+/* MARQUEE */
+.marquee{background:var(--pine);padding:15px 0;overflow:hidden}
+.marquee-track{display:flex;white-space:nowrap;animation:scroll 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.m-item{display:inline-flex;align-items:center;gap:18px;padding:0 24px;font-size:9.5px;font-weight:400;letter-spacing:.28em;color:var(--beige);text-transform:uppercase;flex-shrink:0}
+.m-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;flex-shrink:0}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* WHY */
+.why{display:grid;grid-template-columns:1fr 1fr;padding:110px 80px;gap:80px;align-items:center;background:var(--ivory)}
+.eyebrow{font-size:9.5px;font-weight:400;letter-spacing:.3em;color:var(--clay);text-transform:uppercase;display:flex;align-items:center;gap:11px;margin-bottom:22px}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--clay);flex-shrink:0}
+.eyebrow.gold-eye{color:var(--gold)}
+.eyebrow.gold-eye::before{background:var(--gold)}
+.why-l h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,3.8vw,54px);font-weight:300;line-height:1.12;color:var(--pine-deep);margin-bottom:24px}
+.why-l h2 em,.section-h em{font-style:italic;color:var(--pine)}
+.why-l p{font-size:14.5px;line-height:1.9;color:var(--ink-soft);max-width:440px;margin-bottom:44px}
+.compare{border-top:1px solid rgba(47,76,66,.12)}
+.compare-row{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(47,76,66,.07)}
+.compare-row.head{background:var(--pine-deep)}
+.compare-cell{padding:13px 15px;font-size:12px;font-weight:300;color:var(--ink);letter-spacing:.02em;line-height:1.5}
+.compare-row.head .compare-cell{color:var(--ivory);font-size:9.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:12px 15px}
+.compare-cell.yes{color:var(--pine);font-weight:500}
+.compare-cell.no{color:rgba(156,107,79,.8);text-decoration:line-through;opacity:.7}
+.compare-cell.us{background:rgba(47,76,66,.04)}
+.why-r{position:relative}
+.why-r-main{width:100%;height:460px;background:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80') center/cover no-repeat,var(--beige);display:block}
+.why-r-accent{position:absolute;bottom:-28px;left:-36px;width:195px;height:195px;background:url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=80') center/cover no-repeat,var(--pine);border:5px solid var(--ivory)}
+.why-badge{position:absolute;top:28px;right:-20px;background:var(--pine);color:var(--ivory);padding:18px 22px;text-align:center;min-width:130px}
+.why-badge .b-num{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--gold);display:block}
+.why-badge .b-txt{font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.7;display:block;margin-top:3px}
+
+/* HOW */
+.how{background:var(--pine-deep);padding:112px 80px;position:relative;overflow:hidden}
+.how::after{content:'';position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:420px;height:420px;border-radius:50%;border:1px solid rgba(184,160,106,.05);pointer-events:none}
+.how-head{margin-bottom:72px}
+.how-head h2,.section-h{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4vw,56px);font-weight:300;color:var(--ivory);line-height:1.1}
+.how-head h2 em{font-style:italic;color:rgba(232,216,201,.65)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,.04)}
+.step-card{background:var(--pine-deep);padding:48px 36px;position:relative;transition:background .4s;cursor:none}
+.step-card:hover{background:rgba(47,76,66,.45)}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:rgba(184,160,106,.12);line-height:.9;margin-bottom:28px;display:block;transition:color .4s}
+.step-card:hover .step-n{color:rgba(184,160,106,.3)}
+.step-card h3{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--ivory);margin-bottom:14px;line-height:1.25}
+.step-card p{font-size:12.5px;font-weight:300;line-height:1.85;color:rgba(232,216,201,.58);letter-spacing:.02em}
+.step-bar{position:absolute;bottom:0;left:36px;right:36px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.25,.46,.45,.94)}
+.step-card:hover .step-bar{transform:scaleX(1)}
+
+/* AREAS */
+.areas{padding:112px 80px;background:var(--beige-lt);overflow:hidden}
+.areas-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px}
+.areas-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:var(--pine-deep);line-height:1.12}
+.areas-head h2 em{font-style:italic;color:var(--pine)}
+.areas-note{font-size:13px;color:var(--ink-soft);max-width:240px;line-height:1.8;letter-spacing:.02em}
+.county-strip{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:52px}
+.county-chip{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(47,76,66,.2);padding:8px 18px;font-size:10.5px;font-weight:400;letter-spacing:.12em;color:var(--pine);text-transform:uppercase;transition:background .3s,border-color .3s,color .3s;cursor:none}
+.county-chip:hover,.county-chip.featured{background:var(--pine);border-color:var(--pine);color:var(--ivory)}
+.chip-dot{width:5px;height:5px;background:currentColor;border-radius:50%;opacity:.6}
+.area-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:10px}
+.area-card{position:relative;overflow:hidden;cursor:none}
+.area-card:first-child{grid-row:1/3}
+.a-bg{position:absolute;inset:0;background-size:cover !important;background-position:center !important;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.area-card:hover .a-bg{transform:scale(1.07)}
+.a-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,30,24,.8) 0%,rgba(14,30,24,.15) 50%,transparent 100%)}
+.a-info{position:absolute;bottom:20px;left:20px;right:20px;z-index:2}
+.a-county{font-size:8.5px;font-weight:400;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:4px}
+.a-city{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--ivory);display:block;line-height:1.1}
+.area-card:first-child .a-city{font-size:36px}
+.a-tag{display:inline-block;margin-top:7px;background:rgba(184,160,106,.22);border:1px solid rgba(184,160,106,.38);color:var(--gold-lt);font-size:8.5px;letter-spacing:.14em;padding:3px 10px;text-transform:uppercase}
+
+/* FORM */
+.contact{display:grid;grid-template-columns:1fr 1fr;background:var(--pine);min-height:680px;position:relative;overflow:hidden}
+.contact-l{padding:96px 68px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.contact-l::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(232,216,201,.035) 0,rgba(232,216,201,.035) 1px,transparent 1px,transparent 30px)}
+.contact-l h2{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4vw,56px);font-weight:300;color:var(--ivory);line-height:1.1;margin-bottom:24px;position:relative}
+.contact-l h2 em{font-style:italic;color:rgba(232,216,201,.75)}
+.contact-l p{font-size:14px;line-height:1.9;color:rgba(232,216,201,.6);max-width:370px;margin-bottom:48px;position:relative}
+.perks{display:flex;flex-direction:column;gap:14px;position:relative}
+.perk{display:flex;align-items:center;gap:14px;font-size:13px;font-weight:300;color:rgba(232,216,201,.72);letter-spacing:.02em}
+.perk-icon{width:27px;height:27px;flex-shrink:0;border:1px solid rgba(184,160,106,.38);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:11px}
+.contact-r{background:var(--ivory);padding:72px 64px;display:flex;flex-direction:column;justify-content:center}
+.contact-r h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:var(--pine-deep);margin-bottom:6px}
+.f-sub{font-size:12.5px;color:var(--ink-soft);margin-bottom:36px;line-height:1.65;letter-spacing:.02em}
+.f-group{margin-bottom:18px;position:relative}
+.f-label{display:block;font-size:8.5px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.f-input,.f-select,.f-ta{width:100%;border:none;border-bottom:1px solid rgba(47,76,66,.18);background:transparent;font-family:'Jost',sans-serif;font-size:15px;font-weight:300;color:var(--pine-deep);padding:11px 0;outline:none;transition:border-color .3s;appearance:none;cursor:none}
+.f-input:focus,.f-select:focus,.f-ta:focus{border-bottom-color:var(--pine)}
+.f-input::placeholder,.f-ta::placeholder{color:rgba(14,30,24,.28)}
+.f-line{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--pine);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.f-input:focus+.f-line,.f-select:focus+.f-line,.f-ta:focus+.f-line{transform:scaleX(1)}
+.f-ta{resize:none;height:74px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.f-submit{margin-top:32px;width:100%;background:var(--pine);color:var(--ivory);font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:17px;border:none;cursor:none;position:relative;overflow:hidden;transition:background .3s}
+.f-submit::before{content:'';position:absolute;inset:0;background:var(--pine-mid);transform:translateX(-100%);transition:transform .5s}
+.f-submit:hover::before{transform:translateX(0)}
+.f-btn-txt{position:relative;z-index:1}
+.f-privacy{font-size:10.5px;color:var(--ink-soft);margin-top:14px;text-align:center;line-height:1.6;letter-spacing:.01em}
+.f-success{display:none;text-align:center;padding:32px 0}
+.f-success.show{display:block}
+.f-check{width:60px;height:60px;background:var(--pine);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--gold);font-size:24px}
+.f-success h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--pine-deep);margin-bottom:10px}
+.f-success p{font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+
+/* TESTIMONIALS */
+.social{background:var(--ivory);padding:112px 80px}
+.social-head{text-align:center;margin-bottom:64px}
+.social-head .eyebrow{justify-content:center}
+.social-head .eyebrow::after{content:'';width:20px;height:1px;background:var(--clay)}
+.social-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:var(--pine-deep);line-height:1.12}
+.social-head h2 em{font-style:italic;color:var(--pine)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(47,76,66,.08)}
+.t-card{background:var(--ivory);padding:44px 36px;transition:background .3s}
+.t-card:hover{background:var(--beige-lt)}
+.t-stars{color:var(--gold);font-size:11px;letter-spacing:2px;display:block;margin-bottom:14px}
+.t-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;color:var(--gold);opacity:.28;line-height:.8;display:block;margin-bottom:16px}
+.t-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;font-style:italic;line-height:1.65;color:var(--pine-deep);margin-bottom:24px}
+.t-author{display:flex;align-items:center;gap:12px}
+.t-av{width:38px;height:38px;border-radius:50%;background:var(--pine);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;color:var(--gold);flex-shrink:0}
+.t-name{font-size:12.5px;font-weight:500;color:var(--pine-deep);letter-spacing:.04em;display:block}
+.t-loc{font-size:10.5px;color:var(--ink-soft);letter-spacing:.1em;display:block;margin-top:2px}
+
+/* FAQ */
+.faq{background:var(--beige-lt);padding:96px 80px}
+.faq-head{margin-bottom:52px}
+.faq-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.5vw,48px);font-weight:300;color:var(--pine-deep);line-height:1.12}
+.faq-head h2 em{font-style:italic;color:var(--pine)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 60px}
+.faq-item{border-bottom:1px solid rgba(47,76,66,.1);padding:28px 0;cursor:none}
+.faq-q{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--pine-deep);line-height:1.3}
+.faq-toggle{color:var(--gold);font-size:20px;flex-shrink:0;transition:transform .3s;line-height:1;margin-top:2px}
+.faq-item.open .faq-toggle{transform:rotate(45deg)}
+.faq-a{font-size:13.5px;font-weight:300;line-height:1.85;color:var(--ink-soft);max-height:0;overflow:hidden;transition:max-height .5s ease,padding .4s;letter-spacing:.02em}
+.faq-item.open .faq-a{max-height:300px;padding-top:14px}
+
+/* FOOTER */
+footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px}
+.ft-brand p{font-size:12.5px;line-height:1.9;color:rgba(232,216,201,.45);max-width:300px;margin:18px 0 28px;letter-spacing:.02em}
+.ft-tagline{font-family:'Cormorant Garamond',serif;font-size:12.5px;font-style:italic;color:rgba(184,160,106,.65);letter-spacing:.05em}
+.ft-col h4{font-size:9.5px;font-weight:500;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.ft-col ul{list-style:none}
+.ft-col ul li{margin-bottom:11px}
+.ft-col ul li a{font-size:12.5px;font-weight:300;color:rgba(232,216,201,.5);text-decoration:none;letter-spacing:.04em;transition:color .3s;display:inline-block}
+.ft-col ul li a:hover{color:var(--gold)}
+.ft-bot{background:var(--dark);border-top:1px solid rgba(255,255,255,.05);padding:22px 80px;display:flex;align-items:center;justify-content:space-between}
+.ft-bot p{font-size:10.5px;color:rgba(232,216,201,.28);letter-spacing:.1em}
+
+/* SCROLL REVEAL */
+.rev{opacity:0;transform:translateY(38px);transition:opacity .8s ease,transform .8s ease}
+.rev.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* MOBILE */
+@media(max-width:860px){
+  nav{padding:18px 22px}
+  .nav-mid{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-r{min-height:52vh}
+  .hero-l{padding:110px 28px 60px}
+  .why,.contact{grid-template-columns:1fr}
+  .why{padding:72px 28px}
+  .contact-l,.contact-r{padding:56px 28px}
+  .steps{grid-template-columns:1fr}
+  .area-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .area-card:first-child{grid-column:1/-1;grid-row:auto;height:280px}
+  .area-card{height:210px}
+  .t-grid{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr;padding:56px 28px}
+  .ft-bot{padding:20px 28px;flex-direction:column;gap:8px;text-align:center}
+  .areas,.how,.social,.faq{padding:72px 28px}
+  .f-row{grid-template-columns:1fr}
+  .compare-cell{font-size:11px;padding:10px 10px}
+  body{cursor:auto}
+  #cur,#cur-ring{display:none}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<nav id="nav">
+  <a href="#" class="logo">
+    <svg class="logo-icon" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#2F4C42" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <rect x="22" y="72" width="36" height="6" rx="2"/>
+        <rect x="26" y="68" width="28" height="4" rx="1.5"/>
+        <rect x="30" y="30" width="20" height="38" rx="1"/>
+        <line x1="35" y1="30" x2="35" y2="68"/><line x1="40" y1="30" x2="40" y2="68"/><line x1="45" y1="30" x2="45" y2="68"/>
+        <path d="M20 30 Q16 28 14 24 Q13 20 16 18 Q19 16 22 19 Q24 22 22 25 Q20 28 22 30"/>
+        <rect x="18" y="26" width="44" height="5" rx="1"/>
+        <path d="M60 30 Q64 28 66 24 Q67 20 64 18 Q61 16 58 19 Q56 22 58 25 Q60 28 58 30"/>
+        <path d="M50 54 Q58 46 62 36 Q65 28 60 20"/>
+        <path d="M60 20 Q68 14 70 7 Q64 9 60 15 Q58 18 60 20"/>
+        <path d="M60 20 Q72 18 76 11 Q70 11 64 17 Q61 19 60 20"/>
+        <path d="M60 20 Q66 27 70 25 Q68 19 62 17 Q60 18 60 20"/>
+        <path d="M60 20 Q58 29 62 31 Q66 27 66 21 Q63 18 60 20"/>
+      </g>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-name">Southern Charm</span>
+      <span class="logo-sub">Capital</span>
+    </div>
+  </a>
+  <ul class="nav-mid">
+    <li><a href="#why-skip">Why Choose Us?</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#areas">Areas We Buy</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#contact" class="nav-btn">Tell Us About Your Home</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <p class="hero-eyebrow"><span></span>Georgia Home Buyers</p>
+    <h1 class="hero-head">Ready to Sell<br><em>Your Home?</em><br><strong>Let's Talk.</strong></h1>
+    <p class="hero-copy">Thinking about selling your Georgia home? Talk to us first. We make direct offers, skip the drawn-out process, and work on your schedule — not the market's.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Tell Us About Your Home</a>
+      <a href="#why-skip" class="btn-ghost-lt">See how it works <span>→</span></a>
+    </div>
+    <div class="hero-pill">
+      <span class="p-num">48h</span>
+      <span class="p-label">Avg. response time</span>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-r-img"></div>
+    <div class="hero-r-overlay"></div>
+    <div class="hero-r-bottom">
+      <div class="loc-chip"><span class="loc-dot"></span>Serving All of Georgia</div>
+      <p class="hero-r-quote">Preserving Heritage.<br>Investing in Growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="m-item"><span class="m-dot"></span>No Agent Commissions</span>
+    <span class="m-item"><span class="m-dot"></span>Direct Home Sales</span>
+    <span class="m-item"><span class="m-dot"></span>Cobb County · Stone Mountain · Powder Springs</span>
+    <span class="m-item"><span class="m-dot"></span>Anywhere in Georgia</span>
+    <span class="m-item"><span class="m-dot"></span>Sell As-Is</span>
+    <span class="m-item"><span class="m-dot"></span>No Showings Required</span>
+    <span class="m-item"><span class="m-dot"></span>Fast &amp; Direct</span>
+    <span class="m-item"><span class="m-dot"></span>Mableton · Marietta · Smyrna</span>
+    <span class="m-item"><span class="m-dot"></span>No Agent Commissions</span>
+    <span class="m-item"><span class="m-dot"></span>Direct Home Sales</span>
+    <span class="m-item"><span class="m-dot"></span>Cobb County · Stone Mountain · Powder Springs</span>
+    <span class="m-item"><span class="m-dot"></span>Anywhere in Georgia</span>
+    <span class="m-item"><span class="m-dot"></span>Sell As-Is</span>
+    <span class="m-item"><span class="m-dot"></span>No Showings Required</span>
+    <span class="m-item"><span class="m-dot"></span>Fast &amp; Direct</span>
+    <span class="m-item"><span class="m-dot"></span>Mableton · Marietta · Smyrna</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="why" id="why-skip">
+  <div class="why-l rev">
+    <p class="eyebrow">Why Choose Us?</p>
+    <h2>A Simpler Way<br><em>To Sell Your Home</em></h2>
+    <p>Selling a home doesn't have to mean months of showings, stressful negotiations, and giving away a chunk of your sale in commissions. We keep things simple.</p>
+    <div class="compare">
+      <div class="compare-row head">
+        <div class="compare-cell"></div>
+        <div class="compare-cell">Traditional Route</div>
+        <div class="compare-cell us">Southern Charm</div>
+      </div>
+      <div class="compare-row"><div class="compare-cell">Agent commissions</div><div class="compare-cell no">5–6% of sale</div><div class="compare-cell us yes">None</div></div>
+      <div class="compare-row"><div class="compare-cell">Time to sell</div><div class="compare-cell no">60–90 days avg</div><div class="compare-cell us yes">Days, not months</div></div>
+      <div class="compare-row"><div class="compare-cell">Showings &amp; open houses</div><div class="compare-cell no">Required</div><div class="compare-cell us yes">Not needed</div></div>
+      <div class="compare-row"><div class="compare-cell">Repairs before sale</div><div class="compare-cell no">Often required</div><div class="compare-cell us yes">As-is, always</div></div>
+      <div class="compare-row"><div class="compare-cell">Buyer financing risk</div><div class="compare-cell no">Common risk</div><div class="compare-cell us yes">Not an issue</div></div>
+      <div class="compare-row"><div class="compare-cell">Your closing timeline</div><div class="compare-cell no">Buyer decides</div><div class="compare-cell us yes">You decide</div></div>
+    </div>
+  </div>
+  <div class="why-r rev d2">
+    <div class="why-r-main"></div>
+    <div class="why-r-accent"></div>
+    <div class="why-badge"><span class="b-num">6%</span><span class="b-txt">Commission saved</span></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how-it-works">
+  <div class="how-head rev">
+    <p class="eyebrow gold-eye">The Process</p>
+    <h2>Simple. <em>Straightforward. No Surprises.</em></h2>
+  </div>
+  <div class="steps">
+    <div class="step-card rev"><span class="step-n">01</span><h3>Tell Us About Your Home</h3><p>Fill out the short form below — address, bedrooms, your situation. No commitment. Takes 2 minutes.</p><div class="step-bar"></div></div>
+    <div class="step-card rev d1"><span class="step-n">02</span><h3>We Review &amp; Follow Up</h3><p>Our team reviews the property and reaches out within 24 hours to ask a few questions and understand your timeline.</p><div class="step-bar"></div></div>
+    <div class="step-card rev d2"><span class="step-n">03</span><h3>We Make a Direct Offer</h3><p>If it's a fit, we present a straightforward, written offer. No middlemen, no agent fees eating into your number.</p><div class="step-bar"></div></div>
+    <div class="step-card rev d3"><span class="step-n">04</span><h3>Close on Your Terms</h3><p>You pick the date. We handle the paperwork. Move when you're ready — not when the market says you should.</p><div class="step-bar"></div></div>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas" id="areas">
+  <div class="areas-head rev">
+    <div>
+      <p class="eyebrow">Where We Buy</p>
+      <h2>We Buy Across<br><em>All of Georgia</em></h2>
+    </div>
+    <p class="areas-note">We love Cobb County, Stone Mountain, and Powder Springs — but we buy everywhere in Georgia.</p>
+  </div>
+  <div class="county-strip rev">
+    <span class="county-chip featured"><span class="chip-dot"></span>Cobb County</span>
+    <span class="county-chip featured"><span class="chip-dot"></span>Mableton</span>
+    <span class="county-chip featured"><span class="chip-dot"></span>Marietta</span>
+    <span class="county-chip featured"><span class="chip-dot"></span>Powder Springs</span>
+    <span class="county-chip featured"><span class="chip-dot"></span>Stone Mountain</span>
+    <span class="county-chip"><span class="chip-dot"></span>Smyrna</span>
+    <span class="county-chip"><span class="chip-dot"></span>Kennesaw</span>
+    <span class="county-chip"><span class="chip-dot"></span>Acworth</span>
+    <span class="county-chip"><span class="chip-dot"></span>Forest Park</span>
+    <span class="county-chip"><span class="chip-dot"></span>Lithonia</span>
+    <span class="county-chip"><span class="chip-dot"></span>Jonesboro</span>
+    <span class="county-chip"><span class="chip-dot"></span>McDonough</span>
+    <span class="county-chip"><span class="chip-dot"></span>Decatur</span>
+    <span class="county-chip"><span class="chip-dot"></span>All of Georgia →</span>
+  </div>
+  <div class="area-grid">
+    <div class="area-card rev"><div class="a-bg" style="background:url('https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?w=800&q=80') center/cover"></div><div class="a-ov"></div><div class="a-info"><span class="a-county">Our Home Market</span><span class="a-city">Cobb County</span><span class="a-tag">Mableton · Marietta · Powder Springs</span></div></div>
+    <div class="area-card rev d1"><div class="a-bg" style="background:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80') center/cover"></div><div class="a-ov"></div><div class="a-info"><span class="a-county">DeKalb County</span><span class="a-city">Stone Mountain</span></div></div>
+    <div class="area-card rev d1"><div class="a-bg" style="background:url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=500&q=80') center/cover"></div><div class="a-ov"></div><div class="a-info"><span class="a-county">Cobb County</span><span class="a-city">Powder Springs</span></div></div>
+    <div class="area-card rev d2"><div class="a-bg" style="background:url('https://images.unsplash.com/photo-1625602812206-5ec545ca1231?w=500&q=80') center/cover"></div><div class="a-ov"></div><div class="a-info"><span class="a-county">Cobb County</span><span class="a-city">Marietta</span></div></div>
+    <div class="area-card rev d2"><div class="a-bg" style="background:url('https://images.unsplash.com/photo-1551361415-69c87624334f?w=500&q=80') center/cover"></div><div class="a-ov"></div><div class="a-info"><span class="a-county">All of Georgia</span><span class="a-city">Anywhere</span><span class="a-tag">We'll come to you</span></div></div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="contact" id="contact">
+  <div class="contact-l">
+    <p class="eyebrow gold-eye">Get Started</p>
+    <h2>Thinking About<br><em>Selling?</em></h2>
+    <p>Whether you're ready to sell or just want to know what your options are — reach out. No pressure, no commitment. We'll have a real conversation and go from there.</p>
+    <div class="perks">
+      <div class="perk"><div class="perk-icon">✓</div>No drawn-out process. No agent fees.</div>
+      <div class="perk"><div class="perk-icon">✓</div>We buy as-is — no repairs needed.</div>
+      <div class="perk"><div class="perk-icon">✓</div>We come to you. Anywhere in Georgia.</div>
+      <div class="perk"><div class="perk-icon">✓</div>You choose the timeline. We follow your lead.</div>
+      <div class="perk"><div class="perk-icon">✓</div>Know someone who wants to sell? We appreciate referrals.</div>
+    </div>
+  </div>
+  <div class="contact-r">
+    <h3>Tell Us About Your Home</h3>
+    <p class="f-sub">Confidential · No obligation · We respond within 24 hours</p>
+    <div id="theForm">
+      <div class="f-row">
+        <div class="f-group"><label class="f-label" for="fn">First Name</label><input class="f-input" type="text" id="fn" placeholder="Margaret"><div class="f-line"></div></div>
+        <div class="f-group"><label class="f-label" for="ln">Last Name</label><input class="f-input" type="text" id="ln" placeholder="Williams"><div class="f-line"></div></div>
+      </div>
+      <div class="f-group"><label class="f-label" for="ph">Phone Number</label><input class="f-input" type="tel" id="ph" placeholder="(404) 555-0100"><div class="f-line"></div></div>
+      <div class="f-group"><label class="f-label" for="addr">Property Address</label><input class="f-input" type="text" id="addr" placeholder="123 Peachtree St, Marietta, GA"><div class="f-line"></div></div>
+      <div class="f-row">
+        <div class="f-group"><label class="f-label" for="beds">Bedrooms</label><select class="f-select" id="beds"><option value="">Select</option><option>1 Bed</option><option>2 Beds</option><option>3 Beds</option><option>4 Beds</option><option>5+ Beds</option></select><div class="f-line"></div></div>
+        <div class="f-group"><label class="f-label" for="sit">Your Situation</label><select class="f-select" id="sit"><option value="">Select</option><option>Ready to sell soon</option><option>Inherited property</option><option>Behind on payments</option><option>Divorce / estate</option><option>Property needs work</option><option>Referring someone else's property</option><option>Just exploring</option></select><div class="f-line"></div></div>
+      </div>
+      <div class="f-group"><label class="f-label" for="msg">Anything else? (optional)</label><textarea class="f-ta f-input" id="msg" placeholder="Tell us about the property, your timeline, or any questions..."></textarea><div class="f-line"></div></div>
+      <button class="f-submit" onclick="doSubmit()"><span class="f-btn-txt">Send Us Your Details →</span></button>
+      <p class="f-privacy">Your info stays private. We'll only use it to reach out about your property.</p>
+    </div>
+    <div class="f-success" id="fSuccess">
+      <div class="f-check">✓</div>
+      <h3>Got it — thank you.</h3>
+      <p>We'll review the property and reach out within 24 hours. Talk soon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="social" id="testimonials">
+  <div class="social-head rev">
+    <p class="eyebrow">Seller Stories</p>
+    <h2>Real Georgia Homeowners.<br><em>Real Outcomes.</em></h2>
+  </div>
+  <div class="t-grid">
+    <div class="t-card rev"><span class="t-stars">★★★★★</span><p class="t-text">I didn't want to deal with a realtor. Southern Charm came out, looked at the house, and made us a straightforward offer. We closed without a single open house.</p><div class="t-author"><div class="t-av">DM</div><div><span class="t-name">Denise M.</span><span class="t-loc">Mableton, GA</span></div></div></div>
+    <div class="t-card rev d1"><span class="t-stars">★★★★★</span><p class="t-text">My mom left us her house in Marietta. We had no idea what to do with it. They explained every step and we never felt pressured. Would do it again in a heartbeat.</p><div class="t-author"><div class="t-av">RB</div><div><span class="t-name">Robert &amp; Karen B.</span><span class="t-loc">Marietta, GA</span></div></div></div>
+    <div class="t-card rev d2"><span class="t-stars">★★★★★</span><p class="t-text">The property had issues I knew would kill a regular sale. They bought it as-is and I didn't have to fix a thing. Honestly the easiest real estate deal I've ever done.</p><div class="t-author"><div class="t-av">TA</div><div><span class="t-name">Trina A.</span><span class="t-loc">Stone Mountain, GA</span></div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-head rev">
+    <p class="eyebrow">Common Questions</p>
+    <h2>Everything You Want to Know<br><em>Before You Reach Out</em></h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item"><div class="faq-q">Do I need to make repairs before selling? <span class="faq-toggle">+</span></div><p class="faq-a">Never. We buy homes in any condition — outdated kitchens, roof issues, foundation cracks, full gut jobs. You don't touch a thing.</p></div>
+    <div class="faq-item"><div class="faq-q">Is this only for people in financial trouble? <span class="faq-toggle">+</span></div><p class="faq-a">Not at all. Many sellers are downsizing, relocating, or just don't want the hassle of the MLS. If skipping commissions and showings sounds good to you, we're worth a conversation.</p></div>
+    <div class="faq-item"><div class="faq-q">What areas of Georgia do you buy in? <span class="faq-toggle">+</span></div><p class="faq-a">All of Georgia. We're most active in Cobb County (Mableton, Marietta, Powder Springs), Stone Mountain, and the greater Atlanta metro — but we'll travel anywhere in the state for the right property.</p></div>
+    <div class="faq-item"><div class="faq-q">Why not just list with an agent or on Zillow? <span class="faq-toggle">+</span></div><p class="faq-a">That's always an option and may be right for some people. We're simply another route — one that tends to be faster, simpler, and without the commission fees. Worth a conversation to see which makes more sense for your situation.</p></div>
+    <div class="faq-item"><div class="faq-q">How fast can we close? <span class="faq-toggle">+</span></div><p class="faq-a">As fast as you need. Some sellers close in 7–10 days. Others want 60–90 days to get their next move sorted. We work on your timeline, not ours.</p></div>
+    <div class="faq-item"><div class="faq-q">What if I know someone else who wants to sell? <span class="faq-toggle">+</span></div><p class="faq-a">We'd love to hear from you. Fill out the form and let us know — we'll reach out and take it from there.</p></div>
+    <div class="faq-item"><div class="faq-q">What if I'm not ready to sell yet? <span class="faq-toggle">+</span></div><p class="faq-a">That's completely fine. Submit your property now and we'll have a no-pressure conversation. When you're ready, you'll already know what to expect from us.</p></div>
+    <div class="faq-item"><div class="faq-q">Are there any fees or commissions? <span class="faq-toggle">+</span></div><p class="faq-a">Zero. We are the buyer. No agents involved on your side. You keep every dollar of your agreed sale price.</p></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-brand">
+    <div class="logo-text"><span class="logo-name" style="font-size:17px;color:var(--beige)">Southern Charm Capital</span><span class="logo-sub" style="color:var(--gold);margin-top:5px">Georgia Home Buyers</span></div>
+    <p>We buy homes directly from Georgia homeowners — skip the agent, skip the fees, sell on your terms.</p>
+    <span class="ft-tagline">Preserving Heritage. Investing in Growth.</span>
+  </div>
+  <div class="ft-col">
+    <h4>Navigate</h4>
+    <ul>
+      <li><a href="#why-skip">Why Choose Us?</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#areas">Areas We Buy</a></li>
+      <li><a href="#testimonials">Seller Stories</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Tell Us About Your Home</a></li>
+    </ul>
+  </div>
+  <div class="ft-col">
+    <h4>Get in Touch</h4>
+    <ul>
+      <li><a href="tel:4045550100">(404) 555-0100</a></li>
+      <li><a href="mailto:info@southerncharm.capital">info@southerncharm.capital</a></li>
+      <li><a href="#areas">Cobb County · Stone Mountain · Powder Springs · All of Georgia</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="ft-bot">
+  <p>© 2025 Southern Charm Capital LLC · Georgia</p>
+  <p>Georgia Home Buyers · No Agent Fees · Any Condition</p>
+</div>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+if(cur&&ring){
+  document.addEventListener('mousemove',e=>{cur.style.left=ring.style.left=e.clientX+'px';cur.style.top=ring.style.top=e.clientY+'px';});
+  document.querySelectorAll('a,button,.step-card,.area-card,.t-card,.faq-item,.county-chip').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(1.7)';ring.style.transform='translate(-50%,-50%) scale(1.6)';});
+    el.addEventListener('mouseleave',()=>{cur.style.transform=ring.style.transform='translate(-50%,-50%) scale(1)';});
+  });
+}
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('up',scrollY>55),{passive:true});
+const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}}),{threshold:0.1});
+document.querySelectorAll('.rev').forEach(r=>ro.observe(r));
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!open)item.classList.add('open');
+  });
+});
+function doSubmit(){
+  const fn=document.getElementById('fn'),ph=document.getElementById('ph'),addr=document.getElementById('addr');
+  let ok=true;
+  [fn,ph,addr].forEach(f=>{if(!f.value.trim()){f.style.borderBottomColor='#c0392b';ok=false;setTimeout(()=>f.style.borderBottomColor='',2200);}});
+  if(!ok)return;
+  document.getElementById('theForm').style.display='none';
+  document.getElementById('fSuccess').classList.add('show');
+}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
+});
+document.getElementById('ph').addEventListener('input',function(){
+  let v=this.value.replace(/\D/g,'');
+  if(v.length>=10)v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6,10);
+  else if(v.length>6)v='('+v.slice(0,3)+') '+v.slice(3,6)+'-'+v.slice(6);
+  else if(v.length>3)v='('+v.slice(0,3)+') '+v.slice(3);
+  this.value=v;
+});
+</script>
+</body>
+</html>
