@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" type="image/png" href="Logotype_Symbol_Vector-04.png">
+<link rel="apple-touch-icon" href="Logotype_Symbol_Vector-04.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Southern Charm Capital | Sell Your Georgia Home Directly — No Agents, No Fees</title>
+<title>Southern Charm Capital | Georgia Home Buyers</title>
 <meta name="description" content="Want to sell your Georgia home without listing it? Southern Charm Capital buys houses directly from homeowners across Cobb County, Stone Mountain, Powder Springs & all of Georgia. No agent fees, no showings, fair offers.">
 <meta name="keywords" content="sell my house georgia, home buyer georgia, sell my house fast mableton, sell house marietta ga, cobb county home buyer, stone mountain home buyer, powder springs home buyer, skip the MLS georgia, we buy houses georgia">
 <meta name="robots" content="index, follow">
@@ -512,13 +514,37 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     if(!open)item.classList.add('open');
   });
 });
-function doSubmit(){
-  const fn=document.getElementById('fn'),ph=document.getElementById('ph'),addr=document.getElementById('addr');
+async function doSubmit(){
+  const fn=document.getElementById('fn');
+  const ph=document.getElementById('ph');
+  const addr=document.getElementById('addr');
   let ok=true;
   [fn,ph,addr].forEach(f=>{if(!f.value.trim()){f.style.borderBottomColor='#c0392b';ok=false;setTimeout(()=>f.style.borderBottomColor='',2200);}});
   if(!ok)return;
-  document.getElementById('theForm').style.display='none';
-  document.getElementById('fSuccess').classList.add('show');
+  const btn=document.querySelector('.f-submit');
+  btn.disabled=true;
+  btn.querySelector('.f-btn-txt').textContent='Sending...';
+  const res=await fetch('https://formspree.io/f/mzdkeyen',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      firstName:fn.value,
+      lastName:document.getElementById('ln').value,
+      phone:ph.value,
+      address:addr.value,
+      bedrooms:document.getElementById('beds').value,
+      situation:document.getElementById('sit').value,
+      message:document.getElementById('msg').value
+    })
+  });
+  if(res.ok){
+    document.getElementById('theForm').style.display='none';
+    document.getElementById('fSuccess').classList.add('show');
+  } else {
+    btn.disabled=false;
+    btn.querySelector('.f-btn-txt').textContent='Send Us Your Details →';
+    alert('Something went wrong. Please try again.');
+  }
 }
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});
