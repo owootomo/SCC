@@ -51,7 +51,7 @@ h1.hero-head{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,5.2vw,7
 h1.hero-head em{font-style:italic;color:var(--gold)}
 h1.hero-head strong{font-weight:400;color:var(--beige)}
 .hero-copy{font-size:14.5px;line-height:1.9;font-weight:300;color:rgba(232,216,201,.72);max-width:390px;margin-bottom:48px;opacity:0;animation:up .9s ease .46s forwards;letter-spacing:.02em}
-.hero-btns{display:flex;align-items:center;gap:22px;opacity:0;animation:up .9s ease .6s forwards}
+.hero-btns{display:flex;align-items:center;gap:22px;opacity:1;animation:up .9s ease .6s both}
 .btn-gold{background:var(--gold);color:var(--pine-deep);font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 34px;text-decoration:none;display:inline-block;transition:background .3s,transform .25s,letter-spacing .3s;position:relative;overflow:hidden}
 .btn-gold::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-100%);transition:transform .4s}
 .btn-gold:hover::before{transform:translateX(0)}
@@ -249,6 +249,8 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
   .f-row{grid-template-columns:1fr}
   .compare-cell{font-size:11px;padding:10px 10px}
   body,a,button,.btn-gold,.f-submit,.nav-btn,.county-chip,.step-card,.area-card{cursor:auto}
+  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:none!important;animation:none!important}
+  .btn-gold{pointer-events:auto!important;-webkit-tap-highlight-color:rgba(184,160,106,.3)}
   #cur,#cur-ring{display:none}
 }
 </style>
