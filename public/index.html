@@ -35,7 +35,7 @@ nav.up{background:rgba(248,245,242,.96);backdrop-filter:blur(14px);padding:14px 
 .nav-mid a{font-size:10.5px;font-weight:400;letter-spacing:.15em;color:#E7D8C9!important;text-decoration:none;text-transform:uppercase;position:relative;padding-bottom:2px}
 .nav-mid a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
 .nav-mid a:hover::after{width:100%}
-.nav-btn{background:var(--pine);color:var(--ivory);font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:11px 26px;transition:background .3s,transform .2s;border:none;cursor:pointer;display:inline-block}
+.nav-btn{background:var(--pine);color:var(--ivory);font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:11px 26px;transition:background .3s,transform .2s;border:none;cursor:pointer;display:inline-block;touch-action:manipulation}
 .nav-btn:hover{background:var(--pine-mid);transform:translateY(-1px)}
 
 /* HERO */
@@ -52,7 +52,7 @@ h1.hero-head em{font-style:italic;color:var(--gold)}
 h1.hero-head strong{font-weight:400;color:var(--beige)}
 .hero-copy{font-size:14.5px;line-height:1.9;font-weight:300;color:rgba(232,216,201,.72);max-width:390px;margin-bottom:48px;opacity:0;animation:up .9s ease .46s forwards;letter-spacing:.02em}
 .hero-btns{display:flex;align-items:center;gap:22px;opacity:1;animation:up .9s ease .6s both}
-.btn-gold{background:var(--gold);color:var(--pine-deep);font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 34px;text-decoration:none;display:inline-block;transition:background .3s,transform .25s,letter-spacing .3s;position:relative;overflow:hidden}
+.btn-gold{background:var(--gold);color:var(--pine-deep);font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 34px;text-decoration:none;display:inline-block;transition:background .3s,transform .25s,letter-spacing .3s;position:relative;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:rgba(184,160,106,.3)}
 .btn-gold::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-100%);transition:transform .4s}
 .btn-gold:hover::before{transform:translateX(0)}
 .btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);letter-spacing:.27em}
@@ -550,14 +550,17 @@ async function doSubmit(){
 }
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function(e) {
-    e.preventDefault();
     const id = this.getAttribute('href').slice(1);
+    if(!id) return;
     const target = document.getElementById(id);
     if(target) {
-      const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({top: top, behavior: 'smooth'});
+      e.preventDefault();
+      setTimeout(function(){
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }, 10);
     }
-  });
+  }, {passive: false});
 });
 document.getElementById('ph').addEventListener('input',function(){
   let v=this.value.replace(/\D/g
