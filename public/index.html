@@ -23,8 +23,8 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--ivory);color:var(--pine-deep);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:auto}
-#cur{position:fixed;width:9px;height:9px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s}
-#cur-ring{position:fixed;width:34px;height:34px;border:1px solid var(--pine);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .3s cubic-bezier(.25,.46,.45,.94);opacity:.55}
+#cur{position:fixed;width:9px;height:9px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s;display:none}
+#cur-ring{position:fixed;width:34px;height:34px;border:1px solid var(--pine);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .3s cubic-bezier(.25,.46,.45,.94);opacity:.55;display:none}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(29,51,41,.6);transition:background .4s,padding .4s,box-shadow .4s}
 nav.up{background:rgba(248,245,242,.96);backdrop-filter:blur(14px);padding:14px 56px;box-shadow:0 1px 0 rgba(47,76,66,.1)}
 .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
@@ -45,12 +45,12 @@ nav.up{background:rgba(248,245,242,.96);backdrop-filter:blur(14px);padding:14px 
 .hero-l::after{content:'';position:absolute;right:-60px;bottom:-60px;width:420px;height:420px;border-radius:50%;border:1px solid rgba(184,160,106,.08);animation:breathe 8s ease-in-out infinite}
 @keyframes drift{to{background-position:88px 88px}}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-.hero-eyebrow{display:flex;align-items:center;gap:11px;font-size:9.5px;font-weight:400;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:26px;position:relative;opacity:0;animation:up .8s ease .15s both}
+.hero-eyebrow{display:flex;align-items:center;gap:11px;font-size:9.5px;font-weight:400;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:26px;position:relative;opacity:0;animation:up .8s ease .15s forwards}
 .hero-eyebrow span{display:block;width:28px;height:1px;background:var(--gold);flex-shrink:0}
-h1.hero-head{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,5.2vw,78px);font-weight:300;line-height:1.06;color:var(--ivory);margin-bottom:30px;opacity:0;animation:up .9s ease .3s both}
+h1.hero-head{font-family:'Cormorant Garamond',serif;font-size:clamp(46px,5.2vw,78px);font-weight:300;line-height:1.06;color:var(--ivory);margin-bottom:30px;opacity:0;animation:up .9s ease .3s forwards}
 h1.hero-head em{font-style:italic;color:var(--gold)}
 h1.hero-head strong{font-weight:400;color:var(--beige)}
-.hero-copy{font-size:14.5px;line-height:1.9;font-weight:300;color:rgba(232,216,201,.72);max-width:390px;margin-bottom:48px;opacity:0;animation:up .9s ease .46s both;letter-spacing:.02em}
+.hero-copy{font-size:14.5px;line-height:1.9;font-weight:300;color:rgba(232,216,201,.72);max-width:390px;margin-bottom:48px;opacity:0;animation:up .9s ease .46s forwards;letter-spacing:.02em}
 .hero-btns{display:flex;align-items:center;gap:22px;opacity:1;animation:up .9s ease .6s both}
 .btn-gold{background:var(--gold);color:var(--pine-deep);font-family:'Jost',sans-serif;font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:15px 34px;text-decoration:none;display:inline-block;transition:background .3s,transform .25s,letter-spacing .3s;position:relative;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:rgba(184,160,106,.3)}
 .btn-gold::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-100%);transition:transform .4s}
@@ -58,14 +58,14 @@ h1.hero-head strong{font-weight:400;color:var(--beige)}
 .btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);letter-spacing:.27em}
 .btn-ghost-lt{color:var(--beige);font-size:10.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:7px;transition:gap .3s,color .3s}
 .btn-ghost-lt:hover{gap:13px;color:var(--gold)}
-.hero-pill{position:absolute;bottom:80px;right:0;background:var(--gold);padding:18px 24px;min-width:148px;opacity:0;animation:fromR .7s ease 1s both}
+.hero-pill{position:absolute;bottom:80px;right:0;background:var(--gold);padding:18px 24px;min-width:148px;opacity:0;animation:fromR .7s ease 1s forwards}
 .hero-pill .p-num{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;color:var(--pine-deep);line-height:1;display:block}
 .hero-pill .p-label{font-size:8.5px;font-weight:500;letter-spacing:.2em;color:rgba(14,30,24,.65);text-transform:uppercase;display:block;margin-top:3px}
 .hero-r{position:relative;overflow:hidden;background:var(--beige)}
 .hero-r-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80') center/cover no-repeat;animation:zoomBreath 18s ease-in-out infinite alternate}
 @keyframes zoomBreath{from{transform:scale(1)}to{transform:scale(1.07)}}
 .hero-r-overlay{position:absolute;inset:0;background:linear-gradient(150deg,rgba(47,76,66,.35) 0%,transparent 55%),linear-gradient(to top,rgba(14,30,24,.65) 0%,transparent 55%);z-index:1}
-.hero-r-bottom{position:absolute;bottom:48px;left:40px;right:40px;z-index:2;opacity:0;animation:up .9s ease .85s both}
+.hero-r-bottom{position:absolute;bottom:48px;left:40px;right:40px;z-index:2;opacity:0;animation:up .9s ease .85s forwards}
 .loc-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(248,245,242,.12);backdrop-filter:blur(8px);border:1px solid rgba(248,245,242,.22);padding:7px 14px;margin-bottom:14px;color:var(--ivory);font-size:9.5px;font-weight:400;letter-spacing:.25em;text-transform:uppercase}
 .loc-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
@@ -249,10 +249,9 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
   .f-row{grid-template-columns:1fr}
   .compare-cell{font-size:11px;padding:10px 10px}
   body,a,button,.btn-gold,.f-submit,.nav-btn,.county-chip,.step-card,.area-card{cursor:auto}
+  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:none!important;animation:none!important}
+  .btn-gold{pointer-events:auto!important;-webkit-tap-highlight-color:rgba(184,160,106,.3)}
   #cur,#cur-ring{display:none}
-  *{animation-duration:0.001ms!important;animation-delay:0.001ms!important}
-  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:translateY(0)!important}
-  a,button{-webkit-tap-highlight-color:rgba(184,160,106,.25);touch-action:manipulation}
 }
 </style>
 </head>
@@ -395,7 +394,7 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
 </section>
 
 <!-- FORM -->
-<section class="contact" id="contact" style="scroll-margin-top:80px">
+<section class="contact" id="contact">
   <div class="contact-l">
     <p class="eyebrow gold-eye">Get Started</p>
     <h2>Thinking About<br><em>Selling?</em></h2>
@@ -551,6 +550,19 @@ async function doSubmit(){
     alert('Something went wrong. Please try again.');
   }
 }
-// smooth scroll handled by CSS
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const id = this.getAttribute('href').slice(1);
+    if(!id) return;
+    const target = document.getElementById(id);
+    if(target) {
+      e.preventDefault();
+      setTimeout(function(){
+        const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({top: top, behavior: 'smooth'});
+      }, 10);
+    }
+  }, {passive: false});
+});
 document.getElementById('ph').addEventListener('input',function(){
   let v=this.value.replace(/\D/g
