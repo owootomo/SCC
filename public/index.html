@@ -250,8 +250,9 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
   .compare-cell{font-size:11px;padding:10px 10px}
   body,a,button,.btn-gold,.f-submit,.nav-btn,.county-chip,.step-card,.area-card{cursor:auto}
   #cur,#cur-ring{display:none}
-  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:translateY(0)!important;animation:none!important}
-  .btn-gold,.btn-ghost-lt,a{pointer-events:auto!important;touch-action:manipulation!important}
+  *{animation-duration:0.001ms!important;animation-delay:0.001ms!important}
+  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:translateY(0)!important}
+  a,button{-webkit-tap-highlight-color:rgba(184,160,106,.25);touch-action:manipulation}
 }
 </style>
 </head>
@@ -394,7 +395,7 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
 </section>
 
 <!-- FORM -->
-<section class="contact" id="contact">
+<section class="contact" id="contact" style="scroll-margin-top:80px">
   <div class="contact-l">
     <p class="eyebrow gold-eye">Get Started</p>
     <h2>Thinking About<br><em>Selling?</em></h2>
@@ -509,7 +510,6 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('up',scrollY>55),{passive:true});
 const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}}),{threshold:0,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.rev').forEach(r=>ro.observe(r));
-setTimeout(function(){document.querySelectorAll('.rev:not(.in)').forEach(function(el){el.classList.add('in');});},1500);
 document.querySelectorAll('.faq-item').forEach(item=>{
   item.querySelector('.faq-q').addEventListener('click',()=>{
     const open=item.classList.contains('open');
@@ -549,18 +549,6 @@ async function doSubmit(){
     alert('Something went wrong. Please try again.');
   }
 }
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click', function(e){
-    var href = this.getAttribute('href');
-    if(!href || href === '#') return;
-    var id = href.slice(1);
-    var target = document.getElementById(id);
-    if(target){
-      e.preventDefault();
-      var top = target.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({top: top, behavior: 'smooth'});
-    }
-  });
-});
+// smooth scroll handled by CSS
 document.getElementById('ph').addEventListener('input',function(){
   let v=this.value.replace(/\D/g
