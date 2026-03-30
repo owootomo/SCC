@@ -22,7 +22,7 @@
 :root{--pine:#2F4C42;--pine-deep:#1d3329;--pine-mid:#3d6356;--beige:#E7D8C9;--beige-lt:#f0e8de;--ivory:#F8F5F2;--clay:#9C6B4F;--gold:#B8A06A;--gold-lt:#d4bc88;--dark:#0e1e18;--ink:rgba(14,30,24,.75);--ink-soft:rgba(14,30,24,.45)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--ivory);color:var(--pine-deep);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+body{background:var(--ivory);color:var(--pine-deep);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;cursor:auto}
 #cur{position:fixed;width:9px;height:9px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s}
 #cur-ring{position:fixed;width:34px;height:34px;border:1px solid var(--pine);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .3s cubic-bezier(.25,.46,.45,.94);opacity:.55}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;background:rgba(29,51,41,.6);transition:background .4s,padding .4s,box-shadow .4s}
@@ -268,7 +268,7 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
     <li><a href="#areas">Areas We Buy</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#contact" class="nav-btn">Tell Us About Your Home</a>
+  <a href="#contact" style="pointer-events:all !important;" class="nav-btn">Tell Us About Your Home</a>
 </nav>
 
 <!-- HERO -->
@@ -278,7 +278,7 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
     <h1 class="hero-head">Ready to Sell<br><em>Your Home?</em><br><strong>Let's Talk.</strong></h1>
     <p class="hero-copy">Thinking about selling your Georgia home? Talk to us first. We make direct offers, skip the drawn-out process, and work on your schedule — not the market's.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn-gold" style="pointer-events:auto !important; cursor:pointer !important;">Tell Us About Your Home</a>
+      <a href="#contact" class="btn-gold">Tell Us About Your Home</a>
       <a href="#why-skip" class="btn-ghost-lt">See how it works <span>→</span></a>
     </div>
     <div class="hero-pill">
@@ -477,7 +477,7 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
       <li><a href="#areas">Areas We Buy</a></li>
       <li><a href="#testimonials">Seller Stories</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Tell Us About Your Home</a></li>
+      <li><a href="#contact" style="pointer-events:all !important;">Tell Us About Your Home</a></li>
     </ul>
   </div>
   <div class="ft-col">
