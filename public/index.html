@@ -233,7 +233,7 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
   .hero-l{padding:100px 24px 60px}
   .hero-pill{display:none}
   .hero-btns{flex-direction:column;align-items:flex-start;gap:16px}
-  .btn-gold{font-size:10px;padding:13px 20px;letter-spacing:.12em;pointer-events:auto}
+  .btn-gold{font-size:10px;padding:13px 20px;letter-spacing:.12em;pointer-events:auto;touch-action:manipulation}
   .why,.contact{grid-template-columns:1fr}
   .why{padding:72px 28px}
   .contact-l,.contact-r{padding:56px 28px}
@@ -249,14 +249,14 @@ footer{background:var(--dark);padding:72px 80px;display:grid;grid-template-colum
   .f-row{grid-template-columns:1fr}
   .compare-cell{font-size:11px;padding:10px 10px}
   body,a,button,.btn-gold,.f-submit,.nav-btn,.county-chip,.step-card,.area-card{cursor:auto}
-  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:none!important;animation:none!important}
-  .btn-gold{pointer-events:auto!important;-webkit-tap-highlight-color:rgba(184,160,106,.3)}
   #cur,#cur-ring{display:none}
-  *{animation-duration:0.001ms!important;animation-delay:0.001ms!important}
-  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:translateY(0)!important}
-  a,button{touch-action:manipulation}
+  .hero-eyebrow,.hero-head,.hero-copy,.hero-btns,.hero-r-bottom{opacity:1!important;transform:translateY(0)!important;animation:none!important}
   .hero-l::before{display:none!important}
   .hero-l::after{display:none!important}
+  .hero-r-img{animation:none!important}
+  .loc-dot{animation:none!important}
+  .marquee-track{animation:scroll 28s linear infinite!important}
+  a,button{touch-action:manipulation}
 }
 </style>
 </head>
